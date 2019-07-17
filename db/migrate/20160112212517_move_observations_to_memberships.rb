@@ -1,4 +1,4 @@
-class MoveObservationsToMemberships < ActiveRecord::Migration
+class MoveObservationsToMemberships < ActiveRecord::Migration[5.2]
   def up
     add_column :observations, :membership_id, :integer, references: "memberships"
 

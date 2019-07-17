@@ -1,4 +1,4 @@
-class Event < ActiveRecord::Base
+class Event < ApplicationRecord
   belongs_to :cohort
 
   has_many :attendances, dependent: :destroy

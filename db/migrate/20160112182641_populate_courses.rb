@@ -1,4 +1,4 @@
-class PopulateCourses < ActiveRecord::Migration
+class PopulateCourses < ActiveRecord::Migration[5.2]
   def up
     Course.create!([
       { name: 'Web Development Immersive',        short_name: 'WDI',  format: 'Immersive' },

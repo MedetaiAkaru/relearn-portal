@@ -1,4 +1,4 @@
-class Location < ActiveRecord::Base
+class Location < ApplicationRecord
   has_many :cohorts
   has_and_belongs_to_many :admins, class_name: "User", foreign_key: :location_id
 

@@ -1,4 +1,4 @@
-class PopulateLocations < ActiveRecord::Migration
+class PopulateLocations < ActiveRecord::Migration[5.2]
   def up
     Location.create!([
       { name: 'Atlanta',        short_name: 'ATL' },

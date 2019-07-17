@@ -1,4 +1,4 @@
-class MoveSubmissionsAndAttendanceToMemberships < ActiveRecord::Migration
+class MoveSubmissionsAndAttendanceToMemberships < ActiveRecord::Migration[5.2]
   def up
     add_column :submissions, :membership_id, :integer, references: "memberships"
     add_column :attendances, :membership_id, :integer, references: "memberships"

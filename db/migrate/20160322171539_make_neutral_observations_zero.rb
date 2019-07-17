@@ -1,4 +1,4 @@
-class MakeNeutralObservationsZero < ActiveRecord::Migration
+class MakeNeutralObservationsZero < ActiveRecord::Migration[5.2]
   def change
     Observation.all.each do |observation|
       next if !observation.membership || !observation.user

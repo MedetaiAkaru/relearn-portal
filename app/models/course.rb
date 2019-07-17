@@ -1,4 +1,4 @@
-class Course < ActiveRecord::Base
+class Course < ApplicationRecord
   has_many :cohorts
   FORMATS = ["Immersive", "Course"]
   has_and_belongs_to_many :admins, class_name: "User", foreign_key: :course_id

@@ -1,4 +1,4 @@
-class Observation < ActiveRecord::Base
+class Observation < ApplicationRecord
   belongs_to :admin, class_name: "User"
   belongs_to :membership, touch: true
 

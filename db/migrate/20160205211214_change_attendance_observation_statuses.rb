@@ -1,4 +1,4 @@
-class ChangeAttendanceObservationStatuses < ActiveRecord::Migration
+class ChangeAttendanceObservationStatuses < ActiveRecord::Migration[5.2]
 
   class MigrationAttendance < ActiveRecord::Base
     self.table_name = :attendances

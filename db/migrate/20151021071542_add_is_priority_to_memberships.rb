@@ -1,4 +1,4 @@
-class AddIsPriorityToMemberships < ActiveRecord::Migration
+class AddIsPriorityToMemberships < ActiveRecord::Migration[5.2]
   def change
     add_column :memberships, :is_priority, :boolean
     Membership.all.each do |membership|

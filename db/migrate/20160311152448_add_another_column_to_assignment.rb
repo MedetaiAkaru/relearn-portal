@@ -1,4 +1,4 @@
-class AddAnotherColumnToAssignment < ActiveRecord::Migration
+class AddAnotherColumnToAssignment < ActiveRecord::Migration[5.2]
   def change
     add_column :assignments, :public, :boolean
   end

@@ -1,4 +1,4 @@
-class AddCoreToCohort < ActiveRecord::Migration
+class AddCoreToCohort < ActiveRecord::Migration[5.2]
   def change
     add_column :cohorts, :core_id, :integer
     add_column :cohorts, :duration_in_weeks, :integer

@@ -1,4 +1,4 @@
-class DangleLessOnMemberships < ActiveRecord::Migration
+class DangleLessOnMemberships < ActiveRecord::Migration[5.2]
   def change
     remove_column :attendances, :membership_id, :integer
     add_column :attendances, :user_id, :integer

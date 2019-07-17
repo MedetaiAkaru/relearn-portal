@@ -1,4 +1,4 @@
-class Assignment < ActiveRecord::Base
+class Assignment < ApplicationRecord
   belongs_to :cohort
 
   has_many :submissions, dependent: :destroy

@@ -1,4 +1,4 @@
-class RemoveStudentsFromGa < ActiveRecord::Migration
+class RemoveStudentsFromGa < ActiveRecord::Migration[5.2]
   def change
     @group = Group.at_path("ga")
     return if !@group

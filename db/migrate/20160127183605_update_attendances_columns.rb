@@ -1,4 +1,4 @@
-class UpdateAttendancesColumns < ActiveRecord::Migration
+class UpdateAttendancesColumns < ActiveRecord::Migration[5.2]
   def change
     remove_column :attendances, :required, :boolean
     remove_column :attendances, :admin_id, :integer

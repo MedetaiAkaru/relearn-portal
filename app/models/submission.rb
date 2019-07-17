@@ -1,4 +1,4 @@
-class Submission < ActiveRecord::Base
+class Submission < ApplicationRecord
   has_one :cohort, through: :assignment
 
   belongs_to :assignment, touch: true

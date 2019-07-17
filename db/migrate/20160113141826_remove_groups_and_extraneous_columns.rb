@@ -1,4 +1,4 @@
-class RemoveGroupsAndExtraneousColumns < ActiveRecord::Migration
+class RemoveGroupsAndExtraneousColumns < ActiveRecord::Migration[5.2]
   def change
     remove_column :assignments, :group_id
     remove_column :attendances, :user_id

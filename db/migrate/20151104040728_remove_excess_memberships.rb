@@ -1,4 +1,4 @@
-class RemoveExcessMemberships < ActiveRecord::Migration
+class RemoveExcessMemberships < ActiveRecord::Migration[5.2]
   def change
     ["ga", "ga_wdi", "ga_wdi_dc"].each do |path|
       group = Group.at_path(path)

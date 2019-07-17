@@ -1,4 +1,4 @@
-class AddColumnToSubmissions < ActiveRecord::Migration
+class AddColumnToSubmissions < ActiveRecord::Migration[5.2]
   def change
     add_column :submissions, :score, :integer 
   end

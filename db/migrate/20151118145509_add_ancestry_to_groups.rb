@@ -1,4 +1,4 @@
-class AddAncestryToGroups < ActiveRecord::Migration
+class AddAncestryToGroups < ActiveRecord::Migration[5.2]
 
   def group_ancestors(group, collection = [])
     parent_id = group.read_attribute(:parent_id)

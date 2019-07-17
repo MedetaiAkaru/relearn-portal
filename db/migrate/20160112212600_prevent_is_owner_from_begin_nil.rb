@@ -1,4 +1,4 @@
-class PreventIsOwnerFromBeginNil < ActiveRecord::Migration
+class PreventIsOwnerFromBeginNil < ActiveRecord::Migration[5.2]
   def change
     Membership.where(is_owner: nil).update_all(is_owner: false)
 

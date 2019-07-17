@@ -1,4 +1,4 @@
-class AddLocationCourseNumberToCohorts < ActiveRecord::Migration
+class AddLocationCourseNumberToCohorts < ActiveRecord::Migration[5.2]
   def change
     add_column :cohorts, :number_at_location, :integer
     Cohort.all.each do |cohort|

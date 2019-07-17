@@ -1,4 +1,4 @@
-class Membership < ActiveRecord::Base
+class Membership < ApplicationRecord
   include ModelHelpers
   enum status: [ :active, :inactive ]
 

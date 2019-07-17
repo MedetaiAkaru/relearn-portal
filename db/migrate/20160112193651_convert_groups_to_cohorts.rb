@@ -1,4 +1,4 @@
-class ConvertGroupsToCohorts < ActiveRecord::Migration
+class ConvertGroupsToCohorts < ActiveRecord::Migration[5.2]
   def up
     add_column :assignments, :cohort_id, :integer, references: "cohorts"
     add_column :events, :cohort_id, :integer, references: "cohorts"
