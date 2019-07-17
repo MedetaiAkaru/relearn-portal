@@ -1,0 +1,73 @@
+#mantra:after{
+  display:inline-block;
+  content:"";
+  background-image:asset-url("duck.png");
+  background-size:contain;
+  background-repeat:no-repeat;
+  width:1em;
+  height:1em;
+  margin-left:0.5em;
+}
+
+.avatar{
+  position:relative;
+  display:inline-block;
+  width:50px;
+  height:50px;
+  border:0;
+
+  img{
+    display:block;
+    width:100%;
+    height:100%;
+    position:absolute;
+    left:0;
+    bottom:0;
+    transition:width .2s, height .2s;
+    background-color:transparent;
+  }
+  @media (min-width:601px){
+    &.t img{
+      bottom:auto;
+      top:0;
+    }
+    &.r img{
+      left:auto;
+      right:0;
+    }
+    img:hover{
+      z-index:1000;
+      width:200px;
+      height:200px;
+    }
+  }
+}
+
+.intro{
+  h2{
+    padding-left:0;
+  }
+  &>*{
+    display:inline-block;
+    vertical-align:middle;
+  }
+}
+
+.github {
+  background-image: image-url('GitHub-Mark-64px');
+  background-repeat:  no-repeat;
+  background-position: left 10px center;
+  background-size:contain;
+  padding-left: 56px !important;
+}
+
+
+[data-event-for-today-already-exists] > button{
+  display:none;
+}
+[data-event-for-today-already-exists="true"] > button {
+  display:block;
+}
+[data-event-for-today-already-exists="true"] > button ~ * {
+  display:none;
+}

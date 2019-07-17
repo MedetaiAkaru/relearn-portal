@@ -1,0 +1,46 @@
+<section id="cohorts_section">
+  <h3>Administrated Cohorts</h3>
+  <% if @admin_memberships.count == 0 %>
+    <p>None yet!</p>
+  <% else %>
+    <ul class="pills">
+      <% @admin_memberships.each do |membership| %>
+        <li><%= link_to membership.cohort.name, membership.cohort%></li>
+      <% end %>
+    </ul>
+  <% end %>
+</section>
+
+<section id="cohorts_section">
+  <h3>Enrolled Classes</h3>
+  <% if @user.memberships.count == 0 %>
+    <p>None yet!</p>
+  <% else %>
+    <%= render partial: "memberships/cohorts_table", locals: {
+                                              memberships: @student_memberships,
+                                              header: "#{@user.name}'s Memberships",
+                                              row_header: :cohort } %>
+  <% end %>
+</section>
+
+<section>
+  <h3>Profile</h3>
+  <%= render partial: "form" %>
+  <% if @user.github_id %>
+    <%= link_to "Refresh Github info", gh_refresh_user_path(@user), class: "button" %>
+  <% end %>
+</section>
+
+<% if @user == current_user %>
+  <div class="row group">
+    <section>
+      <%= form_tag regenerate_api_token_user_path(@user), method: "post" do  %>
+        <%= button_tag "Generate API Token", data: {confirm: "This will revoke all previous API tokens. Are you sure?"} %>
+      <% end %>
+
+      <% if @user.api_token %>
+         <%= @user.api_token %>
+      <% end %>
+    </section>
+  </div>
+<% end %>

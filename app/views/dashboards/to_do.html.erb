@@ -1,0 +1,31 @@
+<section>
+  <h2>Cohorts You Admin</h2>
+
+  <% if @todo_info.length == 0 %>
+    <p>None active</p>
+  <% end %>
+
+  <% @todo_info.each do |cohort, items| %>
+    <h3><%= link_to cohort.name, cohort %></h3>
+    <section>
+      <h4>Submissions</h4>
+      <table data-sortable>
+        <%= render partial: "components/todo_table", locals: {collection: items[:submissions]} %>
+      </table>
+    </section>
+
+    <section>
+      <h4>Attendance</h4>
+      <table data-sortable>
+        <%= render partial: "components/todo_table", locals: {collection: items[:attendances]} %>
+      </table>
+    </section>
+
+  <% end %>
+  <h2>Past Cohorts</h2>
+  <ul class="pills">
+    <% @inactive_cohorts.each do |cohort| %>
+      <li><%= link_to cohort.name, cohort %></li>
+    <% end %>
+  </ul>
+</section>

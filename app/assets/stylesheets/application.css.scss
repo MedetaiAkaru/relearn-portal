@@ -1,0 +1,55 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require select2
+ *= require font-awesome
+ *= require_self
+ *= require dependencies
+ *= require theme
+ *= require singletons
+ *= require_tree .
+ */
+
+*{
+   margin:0;
+   padding:0;
+   border:0;
+   font-size:inherit;
+   font-style:inherit;
+   font-weight:inherit;
+   text-decoration:none;
+   color:inherit;
+   background-color:transparent;
+   list-style-type:none;
+ }
+ *:focus{
+   outline:0
+ }
+ div{
+   position:relative;
+ }
+ a[href], button, label, input[type=submit], label{
+   cursor:pointer;
+ }
+ .notext{
+   font-size:0;
+ }
+ .fa:before{
+   font-size:1rem !important;
+ }
+
+.todos-chart div{
+  padding:.5em;
+  background:#444;
+  color:#fff;
+  margin-bottom:.5em;
+}

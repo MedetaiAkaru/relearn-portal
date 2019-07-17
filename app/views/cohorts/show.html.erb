@@ -1,0 +1,65 @@
+<% if @is_admin %>
+  <%= link_to "Manage Cohort", manage_cohort_path(@cohort), class: :button %>
+<% end %>
+
+<section>
+  <h3 id="members"><a href="#members">Members</a></h3>
+  <div>
+    <h4>Roster</h4>
+
+    <% # these two tables are both cached using @cohort.memberships rather than %>
+    <% # their corresponding subset to handle the edge case where a user is %>
+    <% # activated or de-activated %>
+    <% cache cache_key_for_cohort(@cohort, @cohort.memberships, current_user, "active") do %>
+      <%= render partial: "memberships/table", locals: {
+                                                memberships: @active_memberships,
+                                                header: "Active Members",
+                                                row_header: :user_name } %>
+    <% end %>
+
+    <% cache cache_key_for_cohort(@cohort, @cohort.memberships, current_user, "inactive") do %>
+      <%= render partial: "memberships/table", locals: {
+                                                memberships: @inactive_memberships,
+                                                header: "Inactive Members",
+                                                row_header: :user_name } %>
+    <% end %>
+
+    <p>Admins:
+      <% @admins.each do |user| %>
+        <%= link_to user.name, user.memberships.find_by(cohort: @cohort) %>
+        <%= link_to("(x)", toggle_admin_membership_path(user.memberships.find_by(cohort: @cohort)), method: :post, data: {confirm: "Are you sure you want to remove this admin?"}) if @is_admin %>,
+      <% end %>
+    </p>
+  </div>
+</section>
+
+<section>
+  <h3 id="attendance"><a href="#attendance">Attendance</a></h3>
+  <div>
+    <% cache cache_key_for_cohort(@cohort, @events, @is_admin) do %>
+      <%= render partial: "events/table", locals: {events: @events}%>
+    <% end %>
+    <% if @is_admin %>
+      <section data-event-for-today-already-exists="<%= @event_for_today_already_exists %>">
+        <button class='js-show-attendance-form'>An Event for today already exists! Create one anyway...</button>
+        <h4>New Event</h4>
+        <%= render partial: "events/form", locals: {cohort: @cohort, event: Event.new} %>
+      </section>
+    <% end %>
+  </div>
+</section>
+
+<section>
+  <h3 id="assignments"><a href="#assignments">Assignments</a></h3>
+  <div>
+    <% cache cache_key_for_cohort(@cohort, @assignments, @is_admin) do %>
+      <%= render partial: "assignments/table", locals: {assignments: @assignments} %>
+    <% end  %>
+    <% if @is_admin %>
+      <section>
+        <h4>New Assignment</h4>
+        <%= render partial: "assignments/form", locals: {cohort: @cohort, assignment: Assignment.new} %>
+      </section>
+    <% end %>
+  </div>
+</section>

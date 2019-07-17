@@ -1,0 +1,46 @@
+<h3>Base Score: <%=@assignment.base_score ? @assignment.base_score : "No Score" %></h3>
+<p><%= percent_of(@submissions, "complete") %>% complete</p>
+<% if @assignment.repo_url && !@assignment.repo_url.strip.blank? %>
+  <button class="js-count-assignment-issues" data-issues-url="<%= assignment_issues_path(@assignment) %>">Count issues</button>
+<% end %>
+
+<% status_link_text = @show_na ? "Show All" : "Show only N/A" %>
+<% active_link_text = @show_inactive ? "Show only active students" : "Include inactive students" %>
+
+<div>
+  Issues by tag:
+  <ul>
+  <% @assignment.cohort.tags.each do |tag| %>
+    <li>
+      <a href="<%= @assignment.issues_url(tag.memberships.map{|m| m.user }) %>"><%= tag.name %></a>
+    </li>
+  <% end %>
+  </ul>
+</div>
+
+<p>
+<%= link_to status_link_text, assignment_path(@assignment, cohort: @cohort, show_na: !@show_na, show_inactive: @show_inactive) %>
+</p>
+
+<p>
+<%= link_to active_link_text, assignment_path(@assignment, cohort: @cohort, show_na: @show_na,  show_inactive: !@show_inactive) %>
+</p>
+
+<table data-sortable>
+  <%= render partial: "components/todo_table", locals: {collection: @submissions} %>
+</table>
+
+<section>
+  <h3>Edit Assignment</h3>
+  <%= render partial: "form", locals: {assignment: @assignment} %>
+  <%= link_to "Delete Assignment", assignment_path(@assignment), method: :delete, class: "button", data: {confirm: "You sure?"} %>
+</section>
+
+<section>
+  <h3>Manually Create Submission</h3>
+  <p>When an assignment is created, a submission is created automatically for each user of the cohort to which the assignment belongs.</p>
+  <%= form_for [@assignment, Submission.new] do |f| %>
+    <%= f.select :membership_id, @assignment.cohort.memberships.where(status: Membership.statuses[:active]).collect{|m| [m.user.name, m.id]} %>
+    <%= f.submit "Create" %>
+  <% end %>
+</section>

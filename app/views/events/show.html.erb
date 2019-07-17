@@ -1,0 +1,29 @@
+<% status_link_text = @show_na ? "Show All" : "Show only N/A" %>
+<% active_link_text = @show_inactive ? "Show only active students" : "Include inactive students" %>
+
+<p>
+<%= link_to status_link_text, event_path(@event, cohort: @cohort, show_na: !@show_na, show_inactive: @show_inactive) %>
+</p>
+
+<p>
+<%= link_to active_link_text, event_path(@event, cohort: @cohort, show_na: @show_na,  show_inactive: !@show_inactive) %>
+</p>
+
+<table>
+  <%= render partial: "components/todo_table", locals: {collection: @attendances} %>
+</table>
+
+<section id="new_event">
+  <h3>Edit Event</h3>
+  <%= render partial: "events/form", locals: {event: @event} %>
+  <%= link_to "Delete Event", event_path(@event), method: :delete, class: "button", data: {confirm: "You sure?"} %>
+</section>
+
+<section>
+  <h3>Manually Create Attendances</h3>
+  <p>When an event is created, an attendance is created automatically for each user of the cohort to which the event belongs.</p>
+  <%= form_for [@event, Attendance.new] do |f| %>
+    <%= f.select :membership_id, @event.cohort.memberships.where(status: Membership.statuses[:active]).collect{|m| [m.user.name, m.id]} %>
+    <%= f.submit "Create" %>
+  <% end %>
+</section>
