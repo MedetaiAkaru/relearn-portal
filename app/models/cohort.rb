@@ -11,7 +11,7 @@ class Cohort < ApplicationRecord
 
   # we use this to only show existing tags on the cohort tag form. The unique
   # is important becuase otherwise we'll get duplicates of tags
-  has_many :existing_tags, -> {uniq},  through: :memberships, source: :tags
+  has_many :existing_tags, -> {distinct},  through: :memberships, source: :tags
 
   belongs_to :course
   belongs_to :location

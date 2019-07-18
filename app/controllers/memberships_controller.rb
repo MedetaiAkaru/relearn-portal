@@ -54,13 +54,13 @@ class MembershipsController < ApplicationController
   def toggle_active
     authorize! :manage, @membership
     @membership.toggle_active!
-    redirect_to :back
+    redirect_back(fallback_location:manage_cohort_path)
   end
 
   def toggle_admin
     authorize! :manage, @membership
     @membership.toggle_admin!
-    redirect_to :back
+    redirect_back(fallback_location:manage_cohort_path)
   end
 
 
