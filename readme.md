@@ -4,6 +4,9 @@
 
 Re.learn is a student data-tracking app that's better than Google Sheets.
 
+### Additional Resource
+https://gist.github.com/dirkdunn/48ed8ba397299401c49ca318cfe512f5
+
 ### Current features:
 
 - Extensibility across courses and cohorts
@@ -137,37 +140,6 @@ $ garnet logs
 ```
 ---
 
-## Thanks, ever so much, to *all* our contributers
-
-Code contributors: 13
-```
-adambray (Adam Bray)
-amaseda (Adrian Maseda)
-andrewsunglaekim (Andrew Kim)
-beckybeauchamp1 (Becky Beauchamp)
-ebirving (Erica Irving)
-jmas13 (John Master)
-joe-gz (Joe Glatman Zaretsky)
-JonRojas (Jon Rojas)
-jshawl (Jesse Shawl)
-mattscilipoti (Matt Scilipoti)
-nolds9 (Nicholas Olds)
-RobertAKARobin (Robert Thomas)
-tylercrosse (Tyler Crosse)
-```
-Non-coding contributors: 8
-```
-bmartinowich (Brian Martinowich)
-dan-ator (Daniel Alexander)
-jenkins-ga
-jocelynhoule
-sarahbrookscoach
-ShanazFC
-tessb (Tess )
-timfoley (Tim Foley)
-```
-> This contributor list was brought to you by [octoHatRack](https://github.com/LABHR/octohatrack)
-
 # Garnet
 
 ## Local Setup
@@ -181,10 +153,6 @@ $ rake db:migrate
 $ rake db:seed
 $ rails s
 ```
-
-## current_user
-
-It exists. See the application controller and helper.
 
 ## Github Authentication
 
@@ -243,6 +211,10 @@ It's built on the Octokit gem. For more information [see the Octokit docs](https
 - Group
   - `breadcrumbs(group, user = nil)`: navigation breadcrumbs for a group (optionally with a user on the end)
   - `subgroup_tree_html`: nested `<ul>` of the current group and its subgroups
+  
+- current_user
+
+  - It exists. See the application controller and helper.
 
 ## User stories
 
@@ -301,13 +273,3 @@ if !signed_in && !gh_db
   User.new
 =end
 ```
-
-## Deployment
-
-When commits are pushed or merged via pull request to master on this repo, [Travis](https://travis-ci.org/ga-dc/garnet)
-clones the application, runs `bundle exec rake` to run tests specified in `spec/`.
-
-If all tests pass, travis pushes to the production repo: `git@garnet.wdidc.org:garnet.git`
-
-This triggers a `post-update` hook, which pulls from GitHub's master branch and restarts
-unicorn, the application server.
