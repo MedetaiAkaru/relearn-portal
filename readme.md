@@ -1,10 +1,8 @@
 [![Travis](https://travis-ci.org/ga-dc/garnet.svg?branch=master)](https://travis-ci.org/ga-dc/garnet/)
 
-# Garnet
+# Re.learn
 
-Garnet is a collaboration by the instructors of GA's WDI to produce a student data-tracking app that's better than Google Sheets.
-
-### Please fork, clone, and contribute!
+Re.learn is a student data-tracking app that's better than Google Sheets.
 
 ### Current features:
 
